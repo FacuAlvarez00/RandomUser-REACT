@@ -24,8 +24,8 @@ const PersonsDetail: React.FC <props> = ({firstName, lastName, smallImage, count
         </div>
 
         <div>
-          <p>City: {city}</p> 
           <p>Country: {country}</p>
+          <p>City: {city}</p> 
         </div>
     </div>
   )

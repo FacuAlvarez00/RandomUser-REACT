@@ -10,22 +10,11 @@ import { onePerson } from '../../services/functions'
 const PersonDetailed = () => {
   const [detailedPerson, setDetailedPerson] = useState<any>();
 
-  console.log(detailedPerson)
-
-
-
   let params: any = useParams()
-  
 
-/* useEffect(() => {
-  onePerson(params.id)
-    .then((respuesta) => {
-      setDetailedPerson(respuesta);
-      console.log("producto", detailedPerson)
-    })  
-    .catch((error) => (error));
-}, [params.id]);
- */
+
+  
+  
 
 useEffect(() => {
   const localData = localStorage.getItem(params.id);
@@ -39,12 +28,12 @@ useEffect(() => {
   .then((respuesta) => {
     localStorage.setItem(params.id, JSON.stringify(respuesta));
     setDetailedPerson(respuesta);
-    console.log("producto", detailedPerson)
   })  
   .catch((error) => (error));
 }, [params.id]);
 
-
+console.log(params)
+console.log(detailedPerson)
   
 
   return (
