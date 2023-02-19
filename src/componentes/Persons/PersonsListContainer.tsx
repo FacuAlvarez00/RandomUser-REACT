@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react'
 import { allPeople, getGender } from '../../services/functions'
-import PersonDetail from './PersonDetail'
+import PersonDetail from './Person'
 import { Link, useParams } from "react-router-dom";
+import "./persondetail.css"
 
 
 
@@ -55,13 +55,11 @@ const PersonsListContainer: React.FC<props> = () => {
                 />
             </div>
 
-            <Link to={"/gender/women"}>
-                Women
-            </Link>
-            <div className="grid grid-cols-6 gap-9">
+            <div className="grid grid-cols-4 justify-items-center gap-4 mb-8" >
                 {filteredPersons.map((person) => (
+                <Link to={`/person/${person.name.first}`}>
                     <>
-                        <div className="">
+                        <div className="style rounded-xl">
                             <PersonDetail
                                 firstName={person.name.first}
                                 lastName={person.name.last}
@@ -69,11 +67,11 @@ const PersonsListContainer: React.FC<props> = () => {
                                 city={person.location.city}
                                 country={person.location.country}
                             />
-                            <Link to={`/person/${person.name.first}`}>
-                                <button className="bg-red-400 px-5 text-white font-bold mt-2">MORE INFO</button>
-                            </Link>
+                                {/* <button className="bg-red-400 px-5 text-white font-bold mt-2">MORE INFO</button> */}
+                            
                         </div>
                     </>
+                </Link>
                 ))}
             </div>
         </>

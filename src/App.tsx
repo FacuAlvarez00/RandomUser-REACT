@@ -4,6 +4,7 @@ import PersonDetailed from './componentes/Persons/PersonDetailed';
 import PersonsListContainer from './componentes/Persons/PersonsListContainer';
 import './App.css';
 import NavBar from './componentes/NavBar/NavBar';
+/* import { PersonProvider } from './context/personContext'; */
 
 
 
@@ -13,8 +14,11 @@ import NavBar from './componentes/NavBar/NavBar';
 
 
  function App() {
-  return (
-    <div className="App">
+   return (
+
+  /*    
+     <PersonProvider> */
+     
       <BrowserRouter>
           <NavBar/>
         <Routes>
@@ -23,7 +27,10 @@ import NavBar from './componentes/NavBar/NavBar';
           <Route path="/gender/:gendertype" element={<PersonsListContainer firstName="asd" lastName="dad" smallImage="dsada" city="alguna ciudad" country="dsada"/>} />
         </Routes>
       </BrowserRouter>
-    </div>
+
+     /*  </PersonProvider> */
+      
+    
   );
 } 
 
