@@ -4,7 +4,7 @@ import PersonDetailed from './componentes/Persons/PersonDetailed';
 import PersonsListContainer from './componentes/Persons/PersonsListContainer';
 import './App.css';
 import NavBar from './componentes/NavBar/NavBar';
-/* import { PersonProvider } from './context/personContext'; */
+import { PersonProvider } from './context/personContext';
 
 
 
@@ -16,8 +16,8 @@ import NavBar from './componentes/NavBar/NavBar';
  function App() {
    return (
 
-  /*    
-     <PersonProvider> */
+   
+     <PersonProvider> 
      
       <BrowserRouter>
           <NavBar/>
@@ -28,7 +28,7 @@ import NavBar from './componentes/NavBar/NavBar';
         </Routes>
       </BrowserRouter>
 
-     /*  </PersonProvider> */
+    </PersonProvider>
       
     
   );

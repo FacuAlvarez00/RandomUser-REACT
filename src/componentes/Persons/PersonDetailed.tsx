@@ -22,8 +22,6 @@ const PersonDetailed = () => {
       setDetailedPerson(JSON.parse(localData));
       return;
     }
-
-
     onePerson(params.id)
       .then((respuesta) => {
         localStorage.setItem(params.id, JSON.stringify(respuesta));

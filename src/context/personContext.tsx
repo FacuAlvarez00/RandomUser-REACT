@@ -1,18 +1,36 @@
- import { createContext, useEffect, useState } from "react"
+ import { createContext, useEffect, useState, ReactNode } from "react"
 import HomePage from "../componentes/HomePage"
+
+interface IAuthContext {
+    persons: any[];
+    setPersons: any;
+    dataLoaded: any;
+    setDataLoaded: any;
+}
+
 
 
 
 
 export const personContext = createContext<any>(null)
-const suma: number = 3+4
 
+interface IAuthContextProviderProps {
+    children: ReactNode;
+  }
 
 
 
 function PersonProvider(props: React.PropsWithChildren<any>){
+
+    const [persons, setPersons] = useState<any[]>([]);
+    const [dataLoaded, setDataLoaded] = useState<boolean>(true);
+
+  
+
+
+
     return (
-        <personContext.Provider value={{suma}}>
+        <personContext.Provider value={{persons, setPersons, dataLoaded, setDataLoaded}}>
             {props.children}
         </personContext.Provider>
     )

@@ -13,7 +13,7 @@ async function allPeople() {
     const response = await axios.get(apiKey);
     datos = []
     datos.push(...response.data.results)
-    console.log("array datos", datos)
+  
     return datos;
   } catch (error) {
     console.error(error);
@@ -24,9 +24,9 @@ async function allPeople() {
 
 const onePerson = (id: any) => {
   return new Promise((resolve, reject) => {
-    console.log(datos)
+ 
     const prod = datos.find((el: any) => el.name.first === (id))
-    console.log("datos en onePerson", datos)
+
     setTimeout(() => {
       if (prod){
         resolve(prod);
@@ -42,9 +42,9 @@ const onePerson = (id: any) => {
 
 const getGender = (genderURL: any) => {
   return new Promise((resolve, reject) => {
-    console.log(datos)
+
     let reqGender = datos.filter((person: any) => person.gender === genderURL);
-    console.log("datos en getGender", datos)
+
     setTimeout(() => {
       if (reqGender){
         resolve(reqGender);
