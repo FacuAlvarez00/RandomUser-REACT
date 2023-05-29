@@ -2,14 +2,50 @@ import axios from 'axios'
 
 
 let datos: any[] = [];
-
 let num_results: number
+let randomLetter = ""
+let randomLetterTwo = ""
+
+function generateRandomLetter() {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)]
+}
+
+function generateRandomLetterTwo() {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  randomLetterTwo = alphabet[Math.floor(Math.random() * alphabet.length)]
+}
 
 
-async function allPeople() {
+
+
+async function allPeople(boolean: boolean) {
   try {
+    if (boolean === true) {
+      generateRandomLetter()
+      generateRandomLetterTwo()
+    }
     let num_results = (Math.random() * 100)
-    const apiKey =  `https://randomuser.me/api/?page=${num_results}&results=24&seed=abc`;
+    /* const apiKey =  `https://randomuser.me/api/?page=${num_results}&results=24&seed=abc`; */
+    const apiKey = `https://randomuser.me/api/?page=3&results=24&seed=a${randomLetter}${randomLetterTwo}${randomLetter}`
+    console.log(apiKey)
+    const response = await axios.get(apiKey);
+    datos = []
+    datos.push(...response.data.results)
+  
+    return datos;
+  } catch (error) {
+    console.error(error);
+  }
+} 
+
+
+async function allPeopleRefresh() {
+  try {
+  /*   generateRandomLetter() */
+    let num_results = (Math.random() * 100)
+    /* const apiKey =  `https://randomuser.me/api/?page=${num_results}&results=24&seed=abc`; */
+    const apiKey = `https://randomuser.me/api/?page=3&results=24&seed=a${randomLetter}`
     const response = await axios.get(apiKey);
     datos = []
     datos.push(...response.data.results)
@@ -62,8 +98,10 @@ const getGender = (genderURL: any) => {
 
 export{
   allPeople,
+  allPeopleRefresh,
   onePerson,
   datos,
   getGender,
+  generateRandomLetter,
 
 }
