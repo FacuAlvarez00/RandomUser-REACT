@@ -3,7 +3,7 @@ import { allPeople, getGender, generateRandomLetter } from '../../services/funct
 import PersonDetail from './Person'
 import { Link, useParams } from "react-router-dom";
 import { personContext } from '../../context/personContext'
-import "./persondetail.css"
+import "./personslistcontainer.css"
 
 
 
@@ -21,48 +21,43 @@ const PersonsListContainer: React.FC<props> = () => {
 
     const {setPersons, persons, setDataLoaded, dataLoaded } = useContext(personContext) 
     const [searchTerm, setSearchTerm] = useState('');
-    /* const [persons, setPersons] = useState<any[]>([]); */
-    
+    const [mobile, setMobile] = useState<boolean>(false);
+    const [refresh, setRefresh] = useState<boolean>(false);
 
     let { gendertype } = useParams();
 
     function handleRefresh() {
        allPeople(true)
+       setRefresh(!refresh)
     }
+
+    function handleMobile() {
+        if (window.innerWidth < 400) {
+            setMobile(true)
+        } else {
+            setMobile(false)
+        }
+    }
+
  
 
-  /*   useEffect(() => {
-        if (!gendertype){
-            allPeople()
+useEffect(() => {
+    if (!gendertype) {
+        allPeople(false)
             .then((res) => {
                 setPersons(res as any[]);
             })
             .catch((error) => alert(error));
-        }
-        else {
-            getGender(gendertype).then((res) => {
-                setPersons(res as any[]);
-               
-            });
-        }
-    }, []); */
-
-    useEffect(() => {
-        if (!gendertype) {
-            allPeople(false)
-                .then((res) => {
-                    setPersons(res as any[]);
-                })
-                .catch((error) => alert(error));
-        } else {
-            getGender(gendertype).then((res) => {
-                setPersons(res as any[]);
-            });
-        }
-    }, [gendertype, handleRefresh]);
+    } else {
+        getGender(gendertype).then((res) => {
+            setPersons(res as any[]);
+        });
+    }
+    
+}, [gendertype, refresh]);
 
 
-
+    console.log(mobile)
 
     const handleChange = (event: any) => {
         setSearchTerm(event.target.value);
@@ -83,7 +78,7 @@ const PersonsListContainer: React.FC<props> = () => {
 
            <button onClick={handleRefresh}>REFRESH</button> 
 
-            <div className="grid grid-cols-4 justify-items-center gap-4 mb-8" >
+            <div className={mobile? "grid grid-rows-1 grid-cols-1 gap-4" : "grid grid-rows-1 grid-flow-col gap-4"}>
                 {filteredPersons.map((person: any) => (
                     <Link to={`/person/${person.name.first}`}>
                         <>

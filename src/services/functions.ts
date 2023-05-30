@@ -9,26 +9,18 @@ let randomLetterTwo = ""
 function generateRandomLetter() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
   randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)]
-}
-
-function generateRandomLetterTwo() {
-  const alphabet = "abcdefghijklmnopqrstuvwxyz"
   randomLetterTwo = alphabet[Math.floor(Math.random() * alphabet.length)]
 }
-
-
 
 
 async function allPeople(boolean: boolean) {
   try {
     if (boolean === true) {
       generateRandomLetter()
-      generateRandomLetterTwo()
     }
     let num_results = (Math.random() * 100)
     /* const apiKey =  `https://randomuser.me/api/?page=${num_results}&results=24&seed=abc`; */
-    const apiKey = `https://randomuser.me/api/?page=3&results=24&seed=a${randomLetter}${randomLetterTwo}${randomLetter}`
-    console.log(apiKey)
+    const apiKey = `https://randomuser.me/api/?page=3&results=24&seed=a${randomLetter}${randomLetterTwo}`
     const response = await axios.get(apiKey);
     datos = []
     datos.push(...response.data.results)
