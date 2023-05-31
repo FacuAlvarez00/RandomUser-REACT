@@ -14,7 +14,7 @@ type props = {
 const PersonsDetail: React.FC <props> = ({firstName, lastName, smallImage, country, city}) => {
   return (
     <>
-    <div className=' w-full flex gap-x-16'>
+    <div className='flex gap-x-16 border-2 border-pink-200 rounded-lg'>
 
         <div >
           <img className='rounded-xl img_properties'src={smallImage} alt=""/>

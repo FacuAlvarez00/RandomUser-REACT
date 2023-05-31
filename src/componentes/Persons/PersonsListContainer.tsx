@@ -3,6 +3,7 @@ import { allPeople, getGender, generateRandomLetter } from '../../services/funct
 import PersonDetail from './Person'
 import { Link, useParams } from "react-router-dom";
 import { personContext } from '../../context/personContext'
+import { useWindowSize } from '@react-hook/window-size';
 import "./personslistcontainer.css"
 
 
@@ -19,45 +20,45 @@ type props = {
 
 const PersonsListContainer: React.FC<props> = () => {
 
-    const {setPersons, persons, setDataLoaded, dataLoaded } = useContext(personContext) 
+    const { setPersons, persons, setDataLoaded, dataLoaded } = useContext(personContext)
     const [searchTerm, setSearchTerm] = useState('');
-    const [mobile, setMobile] = useState<boolean>(false);
-    const [refresh, setRefresh] = useState<boolean>(false);
+    const [isLargeScreen, setIsLargeScreen] = useState<boolean>(true);
+    const [refresh, setRefresh] = useState<any>();
 
+    const [windowWidth] = useWindowSize();
     let { gendertype } = useParams();
 
     function handleRefresh() {
-       allPeople(true)
-       setRefresh(!refresh)
+        allPeople(true)
+        setRefresh(!refresh)
     }
 
-    function handleMobile() {
-        if (window.innerWidth < 400) {
-            setMobile(true)
+    useEffect(() => {
+        if (windowWidth > 400) {
+            setIsLargeScreen(false)
+            console.log("mobile false")
         } else {
-            setMobile(false)
+            setIsLargeScreen(true)
+            console.log("mobile true")
         }
-    }
+    }, [windowWidth])
 
- 
-
-useEffect(() => {
-    if (!gendertype) {
-        allPeople(false)
-            .then((res) => {
+    useEffect(() => {
+        if (!gendertype) {
+            allPeople(false)
+                .then((res) => {
+                    setPersons(res as any[]);
+                })
+                .catch((error) => alert(error));
+        } else {
+            getGender(gendertype).then((res) => {
                 setPersons(res as any[]);
-            })
-            .catch((error) => alert(error));
-    } else {
-        getGender(gendertype).then((res) => {
-            setPersons(res as any[]);
-        });
-    }
-    
-}, [gendertype, refresh]);
+            });
+        }
+
+    }, [gendertype, refresh]);
 
 
-    console.log(mobile)
 
     const handleChange = (event: any) => {
         setSearchTerm(event.target.value);
@@ -76,21 +77,20 @@ useEffect(() => {
                 />
             </div>
 
-           <button onClick={handleRefresh}>REFRESH</button> 
+            <button onClick={handleRefresh}>REFRESH</button>
 
-            <div className={mobile? "grid grid-rows-1 grid-cols-1 gap-4" : "grid grid-rows-1 grid-flow-col gap-4"}>
+            <div className={isLargeScreen ? "grid grid-rows-1 grid-cols-1 gap-4" : "grid grid-rows-1 grid-flow-col gap-4"}>
                 {filteredPersons.map((person: any) => (
                     <Link to={`/person/${person.name.first}`}>
                         <>
-                            <div className="style rounded-xl">
+                            <div className="card rounded-xl px-7 ">
                                 <PersonDetail
                                     firstName={person.name.first}
                                     lastName={person.name.last}
                                     smallImage={person.picture.large}
                                     city={person.location.city}
                                     country={person.location.country}
-                                />
-                                {/* <button className="bg-red-400 px-5 text-white font-bold mt-2">MORE INFO</button> */}
+                                />  
 
                             </div>
                         </>
