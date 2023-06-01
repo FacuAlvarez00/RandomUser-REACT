@@ -3,9 +3,28 @@
 }
 
 .img_properties{
-    width: 127px;
-    height: 127px;
+    width: 105px;
+    height: 105px;
 }
+.img_detailed{
+    height: 150px;
+    width: 150px;
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .img_properties{
+        width: 127px;
+        height: 127px;
+    }
+    .img_detailed{
+        height: 200px;
+        width: 200px;
+    }
+    
+}
+
+
 
 .hover_info{
     display: none;
@@ -29,8 +48,6 @@
     display: flex;
 
     
-   
-    
 /*    width: 405px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
  */
@@ -39,16 +56,14 @@
 /* .hover_info{
    
 } */
-
-.card_holder{
-
-
-
-}
-
-.card_detail{
-
+.centered_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+  }
   
+.card_detail{
     box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
 }
 .round {
@@ -57,7 +72,3 @@
 	padding: 2px;
 }
 
-.img_detailed{
-    height: 200px;
-    width: 200px;
-}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { allPeople, getGender, generateRandomLetter } from '../../services/functions'
-import PersonDetail from './Person'
+import PersonDetail from './PersonDetail'
 import { Link, useParams } from "react-router-dom";
 import { personContext } from '../../context/personContext'
-import { useWindowSize } from '@react-hook/window-size';
+
 import "./personslistcontainer.css"
 
 
@@ -20,12 +20,11 @@ type props = {
 
 const PersonsListContainer: React.FC<props> = () => {
 
-    const { setPersons, persons, setDataLoaded, dataLoaded } = useContext(personContext)
+    const { setPersons, persons, setDataLoaded, dataLoaded, isLargeScreen } = useContext(personContext)
     const [searchTerm, setSearchTerm] = useState('');
-    const [isLargeScreen, setIsLargeScreen] = useState<boolean>(true);
     const [refresh, setRefresh] = useState<any>();
 
-    const [windowWidth] = useWindowSize();
+ 
     let { gendertype } = useParams();
 
     function handleRefresh() {
@@ -33,15 +32,7 @@ const PersonsListContainer: React.FC<props> = () => {
         setRefresh(!refresh)
     }
 
-    useEffect(() => {
-        if (windowWidth > 400) {
-            setIsLargeScreen(false)
-            console.log("mobile false")
-        } else {
-            setIsLargeScreen(true)
-            console.log("mobile true")
-        }
-    }, [windowWidth])
+  
 
     useEffect(() => {
         if (!gendertype) {
@@ -78,12 +69,12 @@ const PersonsListContainer: React.FC<props> = () => {
             </div>
 
             <button onClick={handleRefresh}>REFRESH</button>
-
-            <div className={isLargeScreen ? "grid grid-rows-1 grid-cols-1 gap-4" : "grid grid-rows-1 grid-flow-col gap-4"}>
+            
+            <div className={isLargeScreen ? "grid grid-cols-4 justify-items-center gap-4 mb-8" : "grid grid-rows-1 grid-cols-1 gap-4"}>
                 {filteredPersons.map((person: any) => (
                     <Link to={`/person/${person.name.first}`}>
                         <>
-                            <div className="card rounded-xl px-7 ">
+                            <div className={isLargeScreen? "card rounded-xl px-7" : "card rounded-xl px-7 mb-3"}>
                                 <PersonDetail
                                     firstName={person.name.first}
                                     lastName={person.name.last}

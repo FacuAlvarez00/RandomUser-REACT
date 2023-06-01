@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { onePerson } from '../../services/functions'
 import "./persondetail.css"
+import { personContext } from '../../context/personContext'
+import { useContext } from 'react'
 
 
 
@@ -10,6 +12,7 @@ import "./persondetail.css"
 
 const PersonDetailed = () => {
   const [detailedPerson, setDetailedPerson] = useState<any>();
+  const { isLargeScreen } = useContext(personContext)
 
   let params: any = useParams()
 
@@ -35,46 +38,36 @@ const PersonDetailed = () => {
 
 
   return (
-    <>
+    <div className='centered_container'>
       {detailedPerson ? (
         <>
-          <div className='flex justify-center card_holder rounded-lg'>
+          <div className={isLargeScreen? 'card_holder' : 'card_holder' }>
 
-            <div className='flex items-start bg-red-100 card_detail p-9 gap-8 text-2xl font-semibold text-center'>
+            <div className={isLargeScreen? 'flex items-start bg-red-100 card_detail p-9 gap-8 font-semibold text-center w-full' : 'flex items-start bg-red-100 card_detail p-9 gap-8 font-semibold w-full'}>
 
-              <div className='flex justify-center img_detailed mt-5'>
-                <img className='round' src={detailedPerson.picture.large} />
+              <div className={isLargeScreen ? 'flex justify-center img_detailed mt-5' : 'flex justify-center img_detailed mt-5'}>
+                <img className='' src={detailedPerson.picture.large} />
               </div>
 
               <div className='flex flex-col justify-center h-full'>
-                <h1 className='my-1'>
+                <h2 className='my-1'>
                   Name: {detailedPerson.name.title + " " + detailedPerson.name.first
                     + " " + detailedPerson.name.last}
-                </h1>
+                </h2>
                 <p className='my-1'>Current age: {detailedPerson.dob.age}</p>
-
                 <p className='my-1'>Country: {detailedPerson.location.country}</p>
                 <p className='my-1'>City: {detailedPerson.location.city}</p>
-
-
                 <p className='my-1'>
                   Username: {detailedPerson.login.username}
                 </p>
-
                 <p className='my-1'>
                   Email: {detailedPerson.email}
                 </p>
-
-
-
               </div>
-
-
 
             </div>
 
           </div>
-
 
 
           <div>
@@ -86,7 +79,7 @@ const PersonDetailed = () => {
       ) : (
         <p>Loading...</p>
       )}
-    </>
+    </div>
   );
 
 }
