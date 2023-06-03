@@ -41,9 +41,9 @@ const PersonDetailed = () => {
     <div className='centered_container'>
       {detailedPerson ? (
         <>
-          <div className={isLargeScreen? 'card_holder' : 'card_holder' }>
+          <div className={isLargeScreen? 'card_holder' : ' mt-8 px-2' }>
 
-            <div className={isLargeScreen? 'flex items-start bg-red-100 card_detail p-9 gap-8 font-semibold text-center w-full' : 'flex items-start bg-red-100 card_detail p-9 gap-8 font-semibold w-full'}>
+            <div className={isLargeScreen? 'flex items-start bg-red-100 card_detail p-9 gap-8 font-semibold text-center w-full' : 'flex items-start bg-red-100 card_detail p-4 gap-8 font-semibold w-full'}>
 
               <div className={isLargeScreen ? 'flex justify-center img_detailed mt-5' : 'flex justify-center img_detailed mt-5'}>
                 <img className='' src={detailedPerson.picture.large} />
@@ -70,9 +70,9 @@ const PersonDetailed = () => {
           </div>
 
 
-          <div>
+          <div className=' ml-2'>
             <Link to={"/"}>
-              <button className=' border-2 my-10'>Return to index</button>
+              <button style={{backgroundColor: "#73BBC9", border: "none" }} className={isLargeScreen? 'border-2 my-10 rounded-full text-white px-2 py-1': 'border-2 my-10 rounded-full text-white px-2 py-1 btn_detail'}>Return to index</button>
             </Link>
           </div>
         </>

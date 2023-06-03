@@ -10,7 +10,7 @@ const NavBar = () => {
 
 
     return (
-        <div className={isLargeScreen? 'flex items-center h-24 bg-red-50' :
+        <div style={{backgroundColor: "#FCE9F1"}} className={isLargeScreen? 'flex items-center h-24 ' :
         'flex items-center h-16 bg-red-50'}>
             <ul className={isLargeScreen? 'flex justify-between text-4xl text-black italic w-full' : 
                         'flex justify-between text-4xl text-black italic w-full px-7' }>

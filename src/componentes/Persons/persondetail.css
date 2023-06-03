@@ -1,5 +1,11 @@
+button{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
 .cardPerson-container{
     border: 1px solid black;
+}
+.card_container{
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .img_properties{
@@ -7,8 +13,9 @@
     height: 105px;
 }
 .img_detailed{
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
+    max-width: 100%;
 }
 
 
@@ -56,13 +63,7 @@
 /* .hover_info{
    
 } */
-.centered_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ajusta la altura según tus necesidades */
-  }
-  
+
 .card_detail{
     box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
 }
