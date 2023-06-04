@@ -59,16 +59,22 @@ const PersonsListContainer: React.FC<props> = () => {
 
     return (
         <>
-            <div className="mb-5">
-                <input
+            <div className="flex justify-between px-7 my-5">
+                <input style={{height: "32px"}} className='border-2 border-neutral-200 rounded-lg'
                     type="text"
                     placeholder="Search by first name"
                     value={searchTerm}
                     onChange={handleChange}
                 />
+
+                            
+                <button style={{backgroundColor: "#73BBC9", border: "none"}} className={isLargeScreen? 'border-2 my-10 rounded-full text-white px-2 py-1': 'border-2 rounded-full text-white px-2 py-1 btn_detail'} onClick={handleRefresh}>REFRESH</button>
+
+
             </div>
 
-            <button onClick={handleRefresh}>REFRESH</button>
+         
+           
             
             <div className={isLargeScreen ? "grid grid-cols-4 justify-items-center gap-4 mb-8" : "grid grid-rows-1 grid-cols-1 gap-4"}>
                 {filteredPersons.map((person: any) => (
