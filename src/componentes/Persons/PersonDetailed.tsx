@@ -70,7 +70,7 @@ const PersonDetailed = () => {
           </div>
 
 
-          <div className=' ml-2'>
+          <div className='ml-2'>
             <Link to={"/"}>
               <button style={{backgroundColor: "#73BBC9", border: "none" }} className={isLargeScreen? 'border-2 my-10 rounded-full text-white px-2 py-1': 'border-2 my-10 rounded-full text-white px-2 py-1 btn_detail'}>Return to index</button>
             </Link>
