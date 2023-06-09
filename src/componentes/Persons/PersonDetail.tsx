@@ -19,7 +19,7 @@ const PersonsDetail: React.FC <props> = ({firstName, lastName, smallImage, count
 
   return (
     <>
-    <div style={{borderRadius: "15px", borderColor: "#FCE9F1"}} className={isLargeScreen? 'flex gap-x-5 border-2 personCard' : 'flex gap-x-8 border-2 card_container'}>
+    <div style={{borderRadius: "15px", borderColor: "#FCE9F1"}} className={isLargeScreen? 'flex gap-x-5 border-2 personCard' : 'flex gap-x-8 border-2 card_container personCard'}>
 
         <div>
           <img className='rounded-xl img_properties'src={smallImage} alt=""/>

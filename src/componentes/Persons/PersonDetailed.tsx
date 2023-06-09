@@ -38,10 +38,10 @@ const PersonDetailed = () => {
 
 
   return (
-    <div className='centered_container'>
+    <div className={isLargeScreen? 'centered_container mt-16 ' : "centered_container "}>
       {detailedPerson ? (
         <>
-          <div className={isLargeScreen? 'card_holder' : ' mt-8 px-2' }>
+          <div style={isLargeScreen? {paddingLeft: "40rem",  paddingRight: "40rem"} : {paddingLeft: "0.75rem",  paddingRight: "0.75rem"}} className={isLargeScreen? 'card_holder' : 'mt-8' }>
 
             <div className={isLargeScreen? 'flex items-start bg-red-100 card_detail p-9 gap-8 font-semibold text-center w-full' : 'flex items-start bg-red-100 card_detail p-4 gap-8 font-semibold w-full'}>
 
@@ -49,7 +49,7 @@ const PersonDetailed = () => {
                 <img className='' src={detailedPerson.picture.large} />
               </div>
 
-              <div className='flex flex-col justify-center h-full'>
+              <div className={isLargeScreen? 'flex flex-col justify-center h-full text-xl' : 'flex flex-col justify-center h-full' }>
                 <h2 className='my-1'>
                   Name: {detailedPerson.name.title + " " + detailedPerson.name.first
                     + " " + detailedPerson.name.last}
@@ -72,7 +72,7 @@ const PersonDetailed = () => {
 
           <div className='ml-2'>
             <Link to={"/"}>
-              <button style={{backgroundColor: "#73BBC9", border: "none" }} className={isLargeScreen? 'border-2 my-10 rounded-full text-white px-2 py-1': 'border-2 my-10 rounded-full text-white px-2 py-1 btn_detail'}>Return to index</button>
+              <button style={{backgroundColor: "#73BBC9", border: "none" }} className={isLargeScreen? 'border-2 my-10 rounded-full text-white px-2 py-1 btn_detailed' : 'border-2 my-10 rounded-full text-white px-2 py-1'}>Return to index</button>
             </Link>
           </div>
         </>

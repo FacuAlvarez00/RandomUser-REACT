@@ -59,8 +59,8 @@ const PersonsListContainer: React.FC<props> = () => {
 
     return (
         <>
-            <div className="flex gap-x-12 items-center px-32">
-                <input style={{height: "40px", width: "300px"}} className='border-2 border-neutral-200 rounded-lg'
+            <div className={isLargeScreen? "flex gap-x-12 items-center px-32 my-3" : "flex gap-x-4 items-center px-7 my-3" }>
+                <input style={isLargeScreen? {height: "40px", width: "300px"} : {height: "30px", width: "150px"}} className='border-2 border-neutral-200 rounded-lg'
                     type="text"
                     placeholder="Search by first name"
                     value={searchTerm}
@@ -68,7 +68,7 @@ const PersonsListContainer: React.FC<props> = () => {
                 />
 
                             
-                <button style={{backgroundColor: "#73BBC9", border: "none"}} className={isLargeScreen? 'border-2 my-6 rounded-full text-white px-4 py-2 ': 'border-2 rounded-full text-white px-2 py-1 btn_detail'} onClick={handleRefresh}>REFRESH</button>
+                <button style={{backgroundColor: "#73BBC9", border: "none"}} className={isLargeScreen? 'border-2 my-6 rounded-full text-white px-4 py-2 ': 'border-2 rounded-full  text-white px-1 py-1 btn_detail text-sm my-2'} onClick={handleRefresh}>REFRESH</button>
 
 
             </div>
@@ -79,8 +79,8 @@ const PersonsListContainer: React.FC<props> = () => {
             <div className={isLargeScreen ? "grid grid-cols-4 justify-items-center gap-4 mb-8 px-24" : "grid grid-rows-1 grid-cols-1 gap-4"}>
                 {filteredPersons.map((person: any) => (
                     <Link to={`/person/${person.name.first}`}>
-                        <>
-                            <div className={isLargeScreen? "card rounded-xl px-7" : "card rounded-xl px-7 mb-3"}>
+                        <div className='style'>
+                            <div className={isLargeScreen? "card rounded-xl px-7 style" : "card rounded-xl px-7 mb-3"}>
                                 <PersonDetail
                                     firstName={person.name.first}
                                     lastName={person.name.last}
@@ -90,7 +90,7 @@ const PersonsListContainer: React.FC<props> = () => {
                                 />  
 
                             </div>
-                        </>
+                        </div>
                     </Link>
                 ))}
             </div>
